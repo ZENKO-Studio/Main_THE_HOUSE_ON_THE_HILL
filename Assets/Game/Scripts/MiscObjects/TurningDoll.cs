@@ -6,6 +6,7 @@ using UnityEngine;
 /// Will need an Player Object with Tag Player
 /// </summary>
 
+[RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
 public class TurningDoll : MonoBehaviour
 {
@@ -15,9 +16,20 @@ public class TurningDoll : MonoBehaviour
     [Tooltip("How much the angle should be")]
     [SerializeField] float angleThreshould;
 
-    float rotationSpeed;
+    [Tooltip("How fast the doll should turn")]
+    [SerializeField] float rotationSpeed;
 
     Transform playerTransform = null;
+
+    private void Start()
+    {
+        //Will 100% get it because it is required comp
+        SphereCollider sphereCollider = GetComponent<SphereCollider>();
+        sphereCollider.radius = distanceThreshould;
+        sphereCollider.isTrigger = true;
+
+        GetComponent<Rigidbody>().isKinematic = true;
+    }
 
     private void Update()
     {
