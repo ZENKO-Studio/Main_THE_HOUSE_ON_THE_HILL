@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Game/Materials.meta
+
+guid: 5d24cbbb70195a7449a3281fa31c6163
+
+guid: 21b6de9a6b79f4a42bfb02b33585c29d
+folderAsset: yes
+
 guid: 31ded519784c2a34e87cc95d1b56b27f
 folderAsset: yes
-========
-guid: f9dbc6ef34e2a5c4ca19c7160954653b
->>>>>>>> ab74cd0 (office greybox EOD 1):Assets/Vefects/Free Fire HDRP/_ Read Me _/Vefects Top Secret.pdf.meta
+
 DefaultImporter:
   externalObjects: {}
   userData: 
