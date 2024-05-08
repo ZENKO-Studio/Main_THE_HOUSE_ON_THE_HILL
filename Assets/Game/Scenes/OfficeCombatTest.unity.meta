@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Game/Scenes/OfficeCombatTest.unity.meta
+
+guid: 6ce29a577498aad4bb6e510e16619813
+folderAsset: yes
+
 guid: 5d24cbbb70195a7449a3281fa31c6163
-========
+
 guid: 21b6de9a6b79f4a42bfb02b33585c29d
 folderAsset: yes
->>>>>>>> c8b00d6 (Grey box of Nursery room):Assets/Game/Materials.meta
+
 DefaultImporter:
   externalObjects: {}
   userData: 
