@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Pack Low Poly Modular Horror House/Scenes/Example.unity.meta
 guid: 21fd20ab5e853474d898461f890f3c29
+========
+guid: 0a7bbafdb75a1134da1285b53c732456
+folderAsset: yes
+>>>>>>>> c8b00d6 (Grey box of Nursery room):Assets/Game/Prefabs.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
