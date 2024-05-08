@@ -1,10 +1,15 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Pack Low Poly Modular Horror House/Scenes/Example.unity.meta
+
 guid: 21fd20ab5e853474d898461f890f3c29
-========
+
 guid: b71d74910c17d41478d62015671f60f3
 folderAsset: yes
->>>>>>>> 176d39b (office greybox EOD 1):Assets/Game/Textures/Materials.meta
+
+
+guid: 0a7bbafdb75a1134da1285b53c732456
+folderAsset: yes
+
+
 DefaultImporter:
   externalObjects: {}
   userData: 
