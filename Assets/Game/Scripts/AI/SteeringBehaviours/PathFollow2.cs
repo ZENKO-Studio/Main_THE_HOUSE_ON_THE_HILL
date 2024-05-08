@@ -1,11 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
-using static UnityEngine.GraphicsBuffer;
 
+//Good for patrolling
 public class PathFollow2 : ArriveSteeringBehaviour
 {
     public Transform[] waypoints; // Array of waypoints to follow
@@ -60,8 +55,6 @@ public class PathFollow2 : ArriveSteeringBehaviour
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
-
-        
 
     }
 }

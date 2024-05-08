@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-
+//Used with NavMesh
 public class PathFollow : ArriveSteeringBehaviour
 {
     public float waypointDistance = 0.5f; // Distance at which the waypoint is considered "reached"
