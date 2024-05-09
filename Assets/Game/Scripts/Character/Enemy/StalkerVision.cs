@@ -14,12 +14,18 @@ public class StalkerVision : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
+        {
             stalker.bPlayerInsight = true;
+            stalker.playerTransform = other.transform;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
+        {
+            stalker.playerTransform = null;
             stalker.bPlayerInsight = false;
+        }
     }
 }

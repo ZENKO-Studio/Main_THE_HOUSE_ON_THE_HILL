@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 262.38358, g: 325.10843, b: 430.30963, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 87836165}
   - component: {fileID: 87836164}
   - component: {fileID: 87836163}
+  - component: {fileID: 87836167}
   m_Layer: 0
   m_Name: Playground
   m_TagString: Untagged
@@ -229,6 +230,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &87836167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87836162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 8608f8b05b21e7048a0b58ab56c8c0fe, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &638184421
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,12 +379,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2bf98ff846c5e7d41bfe0f78c5c0a75f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9990483
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2bf98ff846c5e7d41bfe0f78c5c0a75f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.043619405
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2bf98ff846c5e7d41bfe0f78c5c0a75f,
         type: 3}
@@ -367,7 +399,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2bf98ff846c5e7d41bfe0f78c5c0a75f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2bf98ff846c5e7d41bfe0f78c5c0a75f,
         type: 3}
@@ -491,6 +523,7 @@ GameObject:
   - component: {fileID: 1583629676}
   - component: {fileID: 1583629675}
   - component: {fileID: 1583629674}
+  - component: {fileID: 1583629678}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Player
@@ -578,12 +611,28 @@ Transform:
   m_GameObject: {fileID: 1583629673}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1014581, y: 1.4118692, z: 9.65}
+  m_LocalPosition: {x: 4.16, y: 1.4118692, z: 6.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &1583629678
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583629673}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1776950134
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,6 +931,7 @@ GameObject:
   - component: {fileID: 6979614951275661676}
   - component: {fileID: 6979614951275661674}
   - component: {fileID: 6979614951275661673}
+  - component: {fileID: 6979614951275661677}
   m_Layer: 0
   m_Name: Stalker
   m_TagString: Untagged
@@ -966,7 +1016,33 @@ MonoBehaviour:
   OnCharacterDead:
     m_PersistentCalls:
       m_Calls: []
+  playerTransform: {fileID: 0}
+  attackRange: 0
+  damageToDeal: 0
+  damageMultiplier: 0
   bPlayerInsight: 0
+--- !u!195 &6979614951275661677
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6979614951275661671}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 0.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
