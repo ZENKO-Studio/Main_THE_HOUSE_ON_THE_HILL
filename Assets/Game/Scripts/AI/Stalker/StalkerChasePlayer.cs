@@ -17,8 +17,14 @@ public class StalkerChasePlayer : StalkerBaseState
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if(!stalkerRef.bPlayerInsight)
+        {
+            //Change State to Investigate
+            return;
+        }
+
         //Recalculate Navmesh Path if player moved by certain distance
-        if(Vector3.Distance(lastPlayerPos, agent.transform.position) < 2f))
+        if(Vector3.Distance(lastPlayerPos, agent.transform.position) > 2f)
         {
             agent.SetDestination(stalkerRef.playerTransform.position);
             lastPlayerPos = stalkerRef.playerTransform.position;
@@ -32,7 +38,9 @@ public class StalkerChasePlayer : StalkerBaseState
             float speed = Vector3.Project(agent.desiredVelocity, stalkerTransform.forward).magnitude * agent.speed;
 
             Vector3 nextPos = stalkerTransform.position + (stalkerTransform.forward * speed * Time.deltaTime);
-           
+
+            //stalkerTransform.position = nextPos;
+
             agent.velocity = (nextPos - agent.transform.position) / Time.deltaTime;
 
             float angle = Vector3.Angle(stalkerTransform.forward, agent.desiredVelocity);
@@ -47,6 +55,12 @@ public class StalkerChasePlayer : StalkerBaseState
                                                      Quaternion.LookRotation(agent.desiredVelocity),
                                                      Time.deltaTime * AngularDampeningTime);
             }
+        }
+        
+        if(Vector3.Distance(stalkerTransform.position, agent.destination) < 2f) //#TODO: Change it to attack Range of Stalker
+        {
+            //Change State to Attack
+            fsm.ChangeState(StalkerFSM.AttackState);
         }
     }
 
