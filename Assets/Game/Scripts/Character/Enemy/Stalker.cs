@@ -12,6 +12,11 @@ public class Stalker : EnemyBase
 
     public bool bPlayerInsight = false;
 
+    [SerializeField]
+    public List<Transform> patrolPoints = new List<Transform>();
+
+    int currIndex = 0;
+
     protected override void Start()
     {
         stalkerAgent = GetComponent<NavMeshAgent>();
@@ -39,8 +44,28 @@ public class Stalker : EnemyBase
                 playerRef.TakeDamage(damageToDeal * damageMultiplier);
             }
         }
-
-
         //Do all the visuals 
+    }
+
+    public Transform GetNextWaypoint()
+    {
+        if(currIndex == patrolPoints.Count)
+        {
+            currIndex = 0;
+            RandomizePatrolPoints();
+        }
+
+        return patrolPoints[currIndex++];
+    }
+
+    void RandomizePatrolPoints()
+    {
+        for (int i = 0; i < patrolPoints.Count-1; i++)
+        {
+            Transform temp = patrolPoints[i];
+            int randomIndex = Random.Range(i + 1, patrolPoints.Count - 1);
+            patrolPoints[i] = patrolPoints[randomIndex];
+            patrolPoints[randomIndex] = temp;
+        }
     }
 }
