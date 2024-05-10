@@ -19,7 +19,10 @@ public class CharacterBase : MonoBehaviour
 
     public bool IsPlayerCharacter() { return bIsPlayer; }
 
-    protected float health
+    [SerializeField]
+    protected float health;
+
+    protected float Health
     {
         get { return health; } 
         set
