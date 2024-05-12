@@ -8,6 +8,7 @@ public class BlocksKicked : MonoBehaviour
     public Rigidbody blockRigidbody;
     public AudioSource audio;
 
+    public Animator anim;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,7 +27,12 @@ public class BlocksKicked : MonoBehaviour
                 if (audio != null)
                 {
                     audio.Play();
-               
+
+                    anim = other.GetComponent<Animator>();
+                
+                    
+                        anim.SetTrigger("Kick");
+
                   
 
                 }
