@@ -4,18 +4,22 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent (typeof(StalkerFSM))]
-public class Stalker : EnemyBase
+public class Stalker : EnemyBase, IHear
 {
 
     StalkerFSM fsm;
     NavMeshAgent stalkerAgent;
 
-    public bool bPlayerInsight = false;
+    public bool bPlayerSensed = false;
+    public bool bSoundHeard = false;
+
+    [SerializeField]
+    public List<Vector3> soundPoint = new List<Vector3>();
 
     [SerializeField]
     public List<Transform> patrolPoints = new List<Transform>();
 
-    int currIndex = 0;
+    [SerializeField] int currIndex = 0;
 
     protected override void Start()
     {
@@ -23,10 +27,11 @@ public class Stalker : EnemyBase
         stalkerAgent.stoppingDistance = attackRange;
     }
 
+    #region Attacking Player
     //Checks continuosly
     void CheckForPlayer()
     {
-        if (!bPlayerInsight) return;
+        if (!bPlayerSensed) return;
 
         if (fsm.currentState == StalkerFSM.PatrolState || fsm.currentState == StalkerFSM.InvestigateState)
             fsm.ChangeState(StalkerFSM.ChasePlayerState);
@@ -34,6 +39,8 @@ public class Stalker : EnemyBase
 
     public override void Attack()
     {
+        Debug.Log($"{gameObject.name} Attacking with damage of {damageToDeal * damageMultiplier}");
+
         if(playerTransform != null) 
         {
             //#TODO: Check if stalker is in FOV of player and adjust the damage multiplier
@@ -46,7 +53,9 @@ public class Stalker : EnemyBase
         }
         //Do all the visuals 
     }
+    #endregion
 
+    #region Patroling Related Code
     public Transform GetNextWaypoint()
     {
         if(currIndex == patrolPoints.Count)
@@ -68,4 +77,28 @@ public class Stalker : EnemyBase
             patrolPoints[randomIndex] = temp;
         }
     }
+    #endregion
+
+    #region Sound related Stuff
+    public void RespondToSound(Sound sound)
+    {
+        bSoundHeard = true;
+        soundPoint.Add(sound.pos);
+        Debug.Log($"Stalker heard sound at {sound.pos}");
+    }
+
+    public void SoundInvestigated()
+    {
+        if (soundPoint.Count > 0)
+            soundPoint.RemoveAt(0);
+
+        if (soundPoint.Count == 0)
+            bSoundHeard = false;
+    }
+
+    public Vector3 GetSoundPoint()
+    {
+        return soundPoint[0];
+    }
+    #endregion
 }

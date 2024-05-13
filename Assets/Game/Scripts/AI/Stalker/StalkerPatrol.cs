@@ -17,9 +17,14 @@ public class StalkerPatrol : StalkerBaseState
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(stalkerRef.bPlayerInsight)
+        if(stalkerRef.bPlayerSensed)
         {
             fsm.ChangeState(StalkerFSM.ChasePlayerState);
+        }
+
+        if(stalkerRef.bSoundHeard)
+        {
+            fsm.ChangeState(StalkerFSM.InvestigateSoundState);
         }
 
         //#TODO: Maybe move this movement thing into Enemy Controller and Just Handle Destination Changes from here?
@@ -49,7 +54,7 @@ public class StalkerPatrol : StalkerBaseState
             }
         }
 
-        if (Vector3.Distance(stalkerTransform.position, agent.destination) < agent.stoppingDistance)
+        if (/*Vector3.Distance(stalkerTransform.position, agent.destination)*/agent.remainingDistance < agent.stoppingDistance)
         {
             currentDest = stalkerRef.GetNextWaypoint();
             agent.SetDestination(currentDest.position);
