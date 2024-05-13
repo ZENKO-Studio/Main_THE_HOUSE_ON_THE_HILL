@@ -46,7 +46,7 @@ public class StalkerInvestigateSound : StalkerBaseState
             }
         }
 
-        if (Vector3.Distance(stalkerTransform.position, agent.destination) < agent.stoppingDistance)
+        if (agent.remainingDistance <= agent.stoppingDistance)
         {
             stalkerRef.SoundInvestigated();
 

@@ -30,6 +30,7 @@ public abstract class FSM : MonoBehaviour
 
     public bool ChangeState(string _stateName)
     {
+        Debug.Log($"Changing State to {_stateName}");
         return ChangeState(Animator.StringToHash(_stateName));
     }
 

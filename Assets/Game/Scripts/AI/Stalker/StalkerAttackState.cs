@@ -14,7 +14,7 @@ public class StalkerAttackState : StalkerBaseState
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(stalkerRef.bPlayerInsight)
+        if(stalkerRef.bPlayerSensed)
         {
             currentTime += Time.deltaTime;
             if (currentTime >= stalkerRef.attackFrequency)

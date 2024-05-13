@@ -8,6 +8,7 @@ public class StalkerFSM : FSM
     static public readonly int ChasePlayerState = Animator.StringToHash("ChasePlayer");
     static public readonly int AttackState = Animator.StringToHash("Attack");
     static public readonly int InvestigateState = Animator.StringToHash("Investigate");
+    static public readonly int InvestigateSoundState = Animator.StringToHash("InvestigateSound");
 
 
 }
