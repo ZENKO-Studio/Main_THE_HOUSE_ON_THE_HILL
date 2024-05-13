@@ -4,37 +4,115 @@ using UnityEngine;
 
 public class BlocksKicked : MonoBehaviour
 {
+    public float kickForce = 500;
+    public float interactionDistance = 2.0f;  // This can be used if needed for further checks
+    public float interactionAngle = 45.0f;
+    private GameObject player;
+    public AudioSource audioSource;
+    public List<Rigidbody> interactableBlocks = new List<Rigidbody>(); // Store interactable blocks
+    public Rigidbody rb;
 
-    public Rigidbody blockRigidbody;
-    public AudioSource audio;
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            TryInteract();
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Block")) // Make sure your blocks have the tag "Block"
         {
-             blockRigidbody = other.GetComponent<Rigidbody>();
-            if (blockRigidbody != null)
+            rb = other.GetComponent<Rigidbody>();
+            if (rb != null)
             {
                 // Apply force to simulate the kick
-                blockRigidbody.AddForce(transform.forward * 500); // Adjust force as necessary
+                rb.AddForce(transform.forward * 500); // Adjust force as necessary
 
 
 
 
-                 audio = other.GetComponent<AudioSource>();
-                if (audio != null)
+                audioSource = other.GetComponent<AudioSource>();
+                if (audioSource != null)
                 {
-                    audio.Play();
-              
-                  
+                    audioSource.Play();
+
+
 
                 }
             }
         }
     }
 
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Block"))
+        {
+            rb = other.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                interactableBlocks.Remove(rb);
+            }
+        }
+    }
 
+    void TryInteract()
+    {
+        foreach (Rigidbody rb in interactableBlocks)
+        {
+            if (IsFacingBlock(rb.transform))
+            {
+                if (IsPlayerSprinting())
+                {
+                    KickBlock(rb);
+                }
+                else
+                {
+                    InteractWithBlock(rb);
+                }
+            }
+        }
+    }
 
+    bool IsFacingBlock(Transform blockTransform)
+    {
+        Vector3 directionToBlock = blockTransform.position - player.transform.position;
+        float angle = Vector3.Angle(player.transform.forward, directionToBlock);
+        return angle < interactionAngle;
+    }
 
+    bool IsPlayerSprinting()
+    {
+        // Replace this method with the actual check for whether the player is sprinting
+        // This is a placeholder to demonstrate the logic.
+        return player.GetComponent<StarterAssets.ThirdPersonController>().MoveSpeed > 1;
+    }
 
+    void KickBlock(Rigidbody blockRigidbody)
+    {
+        blockRigidbody.AddForce(player.transform.forward * kickForce, ForceMode.Impulse);
+        PlayAudio();
+    }
+
+    void InteractWithBlock(Rigidbody blockRigidbody)
+    {
+        // Implement custom interaction logic here
+        Debug.Log("Interacted with block: " + blockRigidbody.gameObject.name);
+        PlayAudio();
+    }
+
+    void PlayAudio()
+    {
+        if (audioSource != null && !audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
+    }
 }
