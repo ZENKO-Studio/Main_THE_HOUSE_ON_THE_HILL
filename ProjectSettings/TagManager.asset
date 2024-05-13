@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Folder
   - CinemachineTarget
+  - Block
   layers:
   - Default
   - TransparentFX
