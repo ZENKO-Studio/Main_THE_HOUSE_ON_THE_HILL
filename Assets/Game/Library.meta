@@ -1,8 +1,14 @@
 fileFormatVersion: 2
-guid: f6e165f1bae0e54428ace5c042f2dc75
+<<<<<<<< Updated upstream:Assets/Game/Library.meta
+guid: f18949d4ed5ecd146b6c9b5f597e5440
 folderAsset: yes
 DefaultImporter:
+========
+guid: d29d4bc8681eb1641bd13a5404d2ee2a
+NativeFormatImporter:
+>>>>>>>> Stashed changes:Assets/Game/Animation/Wall Painting Anim.anim.meta
   externalObjects: {}
+  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
