@@ -9,7 +9,7 @@ public class BlocksKicked : MonoBehaviour
     public float interactionAngle = 45.0f;
     private GameObject player;
     public AudioSource audioSource;
-    //public List<Rigidbody> interactableBlocks = new List<Rigidbody>(); // Store interactable blocks
+    public List<Rigidbody> interactableBlocks = new List<Rigidbody>(); // Store interactable blocks
     public Rigidbody rb;
 
     void Start()
@@ -51,21 +51,12 @@ public class BlocksKicked : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Block"))
-        {
-            rb = other.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                //interactableBlocks.Remove(rb);
-            }
-        }
-    }
+
 
     void TryInteract()
     {
-        
+        foreach (Rigidbody rb in interactableBlocks)
+        {
             if (IsFacingBlock(rb.transform))
             {
                 if (IsPlayerSprinting())
@@ -77,7 +68,7 @@ public class BlocksKicked : MonoBehaviour
                     InteractWithBlock(rb);
                 }
             }
-        
+        }
     }
 
     bool IsFacingBlock(Transform blockTransform)
@@ -112,8 +103,6 @@ public class BlocksKicked : MonoBehaviour
         if (audioSource != null && !audioSource.isPlaying)
         {
             audioSource.Play();
-            Sound s = new Sound(transform.position, 20f);
-            Sounds.MakeSound(s);
         }
     }
 }
