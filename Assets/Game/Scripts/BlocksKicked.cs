@@ -51,17 +51,7 @@ public class BlocksKicked : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Block"))
-        {
-            rb = other.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                interactableBlocks.Remove(rb);
-            }
-        }
-    }
+
 
     void TryInteract()
     {
