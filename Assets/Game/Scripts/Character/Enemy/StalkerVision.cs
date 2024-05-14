@@ -15,7 +15,7 @@ public class StalkerVision : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            stalker.bPlayerInsight = true;
+            stalker.bPlayerSensed = true;
             stalker.playerTransform = other.transform;
         }
     }
@@ -25,7 +25,7 @@ public class StalkerVision : MonoBehaviour
         if (other.tag == "Player")
         {
             stalker.playerTransform = null;
-            stalker.bPlayerInsight = false;
+            stalker.bPlayerSensed = false;
         }
     }
 }

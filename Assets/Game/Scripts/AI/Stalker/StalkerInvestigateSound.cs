@@ -2,29 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StalkerPatrol : StalkerBaseState
+public class StalkerInvestigateSound : StalkerBaseState
 {
-    Transform currentDest;
-
     public float AngularDampeningTime = 5.0f;
     public float DeadZone = 10.0f;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        currentDest = stalkerRef.GetNextWaypoint();
-        agent.SetDestination(currentDest.position);
+        agent.SetDestination(stalkerRef.GetSoundPoint());
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(stalkerRef.bPlayerSensed)
+        if (stalkerRef.bPlayerSensed)
         {
             fsm.ChangeState(StalkerFSM.ChasePlayerState);
-        }
-
-        if(stalkerRef.bSoundHeard)
-        {
-            fsm.ChangeState(StalkerFSM.InvestigateSoundState);
         }
 
         //#TODO: Maybe move this movement thing into Enemy Controller and Just Handle Destination Changes from here?
@@ -54,10 +46,18 @@ public class StalkerPatrol : StalkerBaseState
             }
         }
 
-        if (/*Vector3.Distance(stalkerTransform.position, agent.destination)*/agent.remainingDistance < agent.stoppingDistance)
+        if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            currentDest = stalkerRef.GetNextWaypoint();
-            agent.SetDestination(currentDest.position);
+            stalkerRef.SoundInvestigated();
+
+            if(stalkerRef.bSoundHeard)
+            {
+                agent.SetDestination(stalkerRef.GetSoundPoint());
+            }
+            else
+            {
+                fsm.ChangeState(StalkerFSM.PatrolState);
+            }
         }
     }
 }

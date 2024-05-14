@@ -17,10 +17,9 @@ public class StalkerChasePlayer : StalkerBaseState
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(!stalkerRef.bPlayerInsight)
+        if(!stalkerRef.bPlayerSensed)
         {
-            //Change State to Investigate
-            return;
+            fsm.ChangeState(StalkerFSM.InvestigateState);
         }
 
         //Recalculate Navmesh Path if player moved by certain distance
@@ -57,7 +56,7 @@ public class StalkerChasePlayer : StalkerBaseState
             }
         }
         
-        if(Vector3.Distance(stalkerTransform.position, agent.destination) < 2f) //#TODO: Change it to attack Range of Stalker
+        if(agent.remainingDistance <= stalkerRef.attackRange) //#TODO: Change it to attack Range of Stalker
         {
             //Change State to Attack
             fsm.ChangeState(StalkerFSM.AttackState);

@@ -996,10 +996,6 @@ MonoBehaviour:
   interactionDistance: 2
   interactionAngle: 45
   audioSource: {fileID: 2057502788}
-  interactableBlocks:
-  - {fileID: 2057502787}
-  - {fileID: 1225791268}
-  - {fileID: 1710123726}
   rb: {fileID: 2057502787}
 --- !u!1 &1710123724
 GameObject:
@@ -1031,7 +1027,7 @@ Transform:
   m_GameObject: {fileID: 1710123724}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.174, y: -0.126, z: 0}
+  m_LocalPosition: {x: 4.83, y: -0.126, z: 9.63}
   m_LocalScale: {x: 0.25754, y: 0.25754, z: 0.25754}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1261,7 +1257,7 @@ Transform:
   m_GameObject: {fileID: 2057502785}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.374, z: 0}
+  m_LocalPosition: {x: 12.47, y: -0.374, z: -2.47}
   m_LocalScale: {x: 0.25754, y: 0.25754, z: 0.25754}
   m_ConstrainProportionsScale: 0
   m_Children: []

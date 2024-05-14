@@ -48,6 +48,9 @@ public class CharacterBase : MonoBehaviour
     //Can be called from any class to damage this perticular character
     public virtual void TakeDamage(float damage)
     {
+        Debug.Log($"{gameObject.name} Taking Damage Health: {health}");
+        health -= damage;
+
         if(health < 0)
         {
             OnCharacterDead?.Invoke();
