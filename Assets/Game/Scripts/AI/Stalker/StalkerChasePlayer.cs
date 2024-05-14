@@ -7,12 +7,12 @@ public class StalkerChasePlayer : StalkerBaseState
     public float AngularDampeningTime = 5.0f;
     public float DeadZone = 10.0f;
 
-    Vector3 lastPlayerPos;
-
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.SetDestination(stalkerRef.playerTransform.position);
         lastPlayerPos = stalkerRef.playerTransform.position;   
+
+        agent.speed = stalkerRef.chaseSpeed;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -61,6 +61,11 @@ public class StalkerChasePlayer : StalkerBaseState
             //Change State to Attack
             fsm.ChangeState(StalkerFSM.AttackState);
         }
+    }
+
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        agent.speed = stalkerRef.moveSpeed;
     }
 
 }
