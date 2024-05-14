@@ -18,6 +18,13 @@ public class EnemyBase : CharacterBase
     [SerializeField]
     public float attackFrequency;
 
+    [SerializeField]
+    public float moveSpeed = 1.5f;
+
+    [Tooltip("Stun Time in Seconds")]
+    [SerializeField]
+    public int stunTime = 5;
+
     // Start is called before the first frame update
     protected override void Start()
     {

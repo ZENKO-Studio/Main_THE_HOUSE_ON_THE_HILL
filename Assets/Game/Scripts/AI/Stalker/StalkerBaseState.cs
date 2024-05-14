@@ -11,6 +11,8 @@ public class StalkerBaseState : FSMBaseState<StalkerFSM>
     protected Transform stalkerTransform;
     protected Animator yBotAnimator;
 
+    protected Vector3 lastPlayerPos;
+
     public override void Init(GameObject _owner, FSM _fsm)
     {
         base.Init(_owner, _fsm);

@@ -25,6 +25,7 @@ public class Stalker : EnemyBase, IHear
     {
         stalkerAgent = GetComponent<NavMeshAgent>();
         stalkerAgent.stoppingDistance = attackRange;
+        stalkerAgent.speed = moveSpeed;
     }
 
     #region Attacking Player
@@ -99,6 +100,16 @@ public class Stalker : EnemyBase, IHear
     public Vector3 GetSoundPoint()
     {
         return soundPoint[0];
+    }
+    #endregion
+
+    #region Getting Stunned
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Salt")
+        {
+            fsm.ChangeState(StalkerFSM.StunState);
+        }
     }
     #endregion
 }
