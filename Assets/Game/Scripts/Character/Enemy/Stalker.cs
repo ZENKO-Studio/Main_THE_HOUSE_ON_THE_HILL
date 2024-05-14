@@ -19,6 +19,8 @@ public class Stalker : EnemyBase, IHear
     [SerializeField]
     public List<Transform> patrolPoints = new List<Transform>();
 
+    public float chaseSpeed = 2;
+
     [SerializeField] int currIndex = 0;
 
     protected override void Start()
