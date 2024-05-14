@@ -11,6 +11,8 @@ public class StalkerChasePlayer : StalkerBaseState
     {
         agent.SetDestination(stalkerRef.playerTransform.position);
         lastPlayerPos = stalkerRef.playerTransform.position;   
+
+        agent.speed = stalkerRef.chaseSpeed;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -59,6 +61,11 @@ public class StalkerChasePlayer : StalkerBaseState
             //Change State to Attack
             fsm.ChangeState(StalkerFSM.AttackState);
         }
+    }
+
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        agent.speed = stalkerRef.moveSpeed;
     }
 
 }
