@@ -7,8 +7,6 @@ public class StalkerChasePlayer : StalkerBaseState
     public float AngularDampeningTime = 5.0f;
     public float DeadZone = 10.0f;
 
-    Vector3 lastPlayerPos;
-
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.SetDestination(stalkerRef.playerTransform.position);
