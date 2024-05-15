@@ -28,13 +28,13 @@ public abstract class FSM : MonoBehaviour
 
     public int currentState;
 
-    public bool ChangeState(string _stateName)
+    public virtual bool ChangeState(string _stateName)
     {
         Debug.Log($"Changing State to {_stateName}");
         return ChangeState(Animator.StringToHash(_stateName));
     }
 
-    public bool ChangeState(int _stateName)
+    public virtual bool ChangeState(int _stateName)
     {
         bool hasState = true;
 #if UNITY_EDITOR
@@ -47,6 +47,7 @@ public abstract class FSM : MonoBehaviour
         if(hasState)
         {
             currentState = _stateName;
+            
         }
 
         return hasState;
