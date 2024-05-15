@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,22 +24,30 @@ public class Capture : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject objectToCheck; // Object to check if it's in view
 
+    [SerializeField] private Camera mainCamera;
+
     private bool viewingPhoto;
     private bool isPlayerActive = true;
+    private bool isCaptureMode = false;
 
     private void Start()
     {
-        // Initialization if needed
+        mainCamera = Camera.main;
     }
 
     private void Update()
     {
+        if (!isCaptureMode)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             if (!viewingPhoto)
             {
                 // Check if the object is in view and decide if it's a key item photo or a normal photo
-                if (objectToCheck != null && CameraUtilities.IsObjectInView(Camera.main, objectToCheck))
+                if (objectToCheck != null && CameraUtilities.IsObjectInViewAndWithinArea(mainCamera, objectToCheck))
                 {
                     StartCoroutine(CapturePhoto(true)); // Capture key item photo
                 }
@@ -57,6 +66,12 @@ public class Capture : MonoBehaviour
         {
             TogglePlayer();
         }
+    }
+
+    public void ToggleCapture()
+    {
+        isCaptureMode = !isCaptureMode;
+        player.SetActive(!isCaptureMode); // Disable player control when in capture mode
     }
 
     void TogglePlayer()
