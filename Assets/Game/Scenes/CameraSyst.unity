@@ -950,7 +950,7 @@ Animator:
   m_GameObject: {fileID: 675602167}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: eed0440a38f12ae428c917f508863fe5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7657962a860b89047801d76052645133, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -969,7 +969,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675602167}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -1693,17 +1693,27 @@ PrefabInstance:
     - target: {fileID: 6509037309726873126, guid: dcc049c659b15bb458afb1e147bdde2b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6509037309726873126, guid: dcc049c659b15bb458afb1e147bdde2b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6509037309726873126, guid: dcc049c659b15bb458afb1e147bdde2b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509037309726873126, guid: dcc049c659b15bb458afb1e147bdde2b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.3327026
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509037309726873126, guid: dcc049c659b15bb458afb1e147bdde2b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.099975586
       objectReference: {fileID: 0}
     - target: {fileID: 6509037309726873126, guid: dcc049c659b15bb458afb1e147bdde2b,
         type: 3}
