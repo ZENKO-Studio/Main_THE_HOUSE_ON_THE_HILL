@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Game/Images.meta
 guid: c0428983bb70b7d43aa93b2a9d6118b6
+========
+guid: 0326069e5a8093c4ba707b14110d6249
+>>>>>>>> 48ae2ac (Document Added):Assets/Game/Scripts/Objects.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
