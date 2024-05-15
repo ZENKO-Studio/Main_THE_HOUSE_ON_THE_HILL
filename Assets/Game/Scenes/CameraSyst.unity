@@ -1048,12 +1048,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882249840}
   m_CullTransparentMesh: 1
---- !u!1 &950669517 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5945294282808597708, guid: da368305c20f1d147bef194c3c2891f0,
-    type: 3}
-  m_PrefabInstance: {fileID: 232828161}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1358877203
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,19 +1180,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f853f8fd5798284985e4c9315d7ffea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photoDisplay: {fileID: 675602169}
-  PhotoFrame: {fileID: 437552750}
-  photoPrefab: {fileID: 8528402177626227932, guid: dcc049c659b15bb458afb1e147bdde2b,
-    type: 3}
-  normalPhotoContainer: {fileID: 631957880}
-  keyItemContainer: {fileID: 1592280535}
-  cameraFlash: {fileID: 1626423332}
-  flashTime: 0.2
-  fadingAnimation: {fileID: 675602171}
-  player: {fileID: 950669517}
-  objectToCheck: {fileID: 1697716305}
-  viewingPhoto: 0
-  isPlayerActive: 1
+  photoDisplay: {fileID: 0}
+  PhotoFrame: {fileID: 0}
+  photoPrefab: {fileID: 0}
+  normalPhotoContainer: {fileID: 0}
+  keyItemContainer: {fileID: 0}
+  cameraFlash: {fileID: 0}
+  flashTime: 0
+  fadingAnimation: {fileID: 0}
+  player: {fileID: 0}
+  objectToCheck: {fileID: 0}
 --- !u!4 &1445917345
 Transform:
   m_ObjectHideFlags: 0
