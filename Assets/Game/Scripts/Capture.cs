@@ -24,9 +24,6 @@ public class Capture : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject objectToCheck; // Object to check if it's in view
 
-    [Header("Capture Mode UI")]
-    [SerializeField] private Canvas captureModeCanvas;
-
     [SerializeField] private Camera mainCamera;
 
     private bool viewingPhoto;
@@ -36,10 +33,6 @@ public class Capture : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
-
-        
-            captureModeCanvas.enabled = false; // Ensure the canvas is initially disabled
-      
     }
 
     private void Update()
@@ -79,12 +72,6 @@ public class Capture : MonoBehaviour
     {
         isCaptureMode = !isCaptureMode;
         player.SetActive(!isCaptureMode); // Disable player control when in capture mode
-
-        if (captureModeCanvas != null)
-        {
-            captureModeCanvas.enabled = isCaptureMode; // Enable or disable the capture mode canvas
-        }
-
     }
 
     void TogglePlayer()
