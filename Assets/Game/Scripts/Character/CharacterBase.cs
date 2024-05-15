@@ -49,11 +49,13 @@ public class CharacterBase : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         Debug.Log($"{gameObject.name} Taking Damage Health: {health}");
-        health -= damage;
+        Health -= damage;
 
         if(health < 0)
         {
             OnCharacterDead?.Invoke();
         }
     }
+
+    public float GetHealth() { return health; }
 }
