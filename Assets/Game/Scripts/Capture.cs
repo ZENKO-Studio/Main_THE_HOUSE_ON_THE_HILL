@@ -1,4 +1,3 @@
-using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +9,7 @@ public class Capture : MonoBehaviour
     [SerializeField] private Image photoDisplay;
     [SerializeField] private GameObject PhotoFrame;
     [SerializeField] private GameObject photoPrefab; // Prefab for the photo game object
-    [SerializeField] private Transform normalPhotoContainer; // Container to store normal photos
-    [SerializeField] private Transform keyItemContainer; // Container to store key item photos
+    [SerializeField] private Transform photoContainer; // Container to store photo game objects
 
     [Header("Flash Effect")]
     [SerializeField] private GameObject cameraFlash;
@@ -22,46 +20,22 @@ public class Capture : MonoBehaviour
 
     [Header("Player Disable")]
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject objectToCheck; // Object to check if it's in view
-
-    [Header("Capture Mode UI")]
-    [SerializeField] private Canvas captureModeCanvas;
-
-    [SerializeField] private Camera mainCamera;
 
     private bool viewingPhoto;
     private bool isPlayerActive = true;
-    private bool isCaptureMode = false;
 
     private void Start()
     {
-        mainCamera = Camera.main;
-
-        
-            captureModeCanvas.enabled = false; // Ensure the canvas is initially disabled
-      
+        // Initialization if needed
     }
 
     private void Update()
     {
-        if (!isCaptureMode)
-        {
-            return;
-        }
-
         if (Input.GetMouseButtonDown(0))
         {
             if (!viewingPhoto)
             {
-                // Check if the object is in view and decide if it's a key item photo or a normal photo
-                if (objectToCheck != null && CameraUtilities.IsObjectInViewAndWithinArea(mainCamera, objectToCheck))
-                {
-                    StartCoroutine(CapturePhoto(true)); // Capture key item photo
-                }
-                else
-                {
-                    StartCoroutine(CapturePhoto(false)); // Capture normal photo
-                }
+                StartCoroutine(CapturePhoto());
             }
             else
             {
@@ -75,25 +49,13 @@ public class Capture : MonoBehaviour
         }
     }
 
-    public void ToggleCapture()
-    {
-        isCaptureMode = !isCaptureMode;
-        player.SetActive(!isCaptureMode); // Disable player control when in capture mode
-
-        if (captureModeCanvas != null)
-        {
-            captureModeCanvas.enabled = isCaptureMode; // Enable or disable the capture mode canvas
-        }
-
-    }
-
     void TogglePlayer()
     {
         isPlayerActive = !isPlayerActive;
         player.SetActive(isPlayerActive);
     }
 
-    IEnumerator CapturePhoto(bool isKeyItem)
+    IEnumerator CapturePhoto()
     {
         viewingPhoto = true;
         yield return new WaitForEndOfFrame();
@@ -105,7 +67,7 @@ public class Capture : MonoBehaviour
         Rect regionToRead = new Rect(0, 0, Screen.width, Screen.height);
         screenCapture.ReadPixels(regionToRead, 0, 0, false);
         screenCapture.Apply();
-        ShowPhoto(screenCapture, isKeyItem);
+        ShowPhoto(screenCapture);
     }
 
     IEnumerator CameraFlashEffect()
@@ -115,7 +77,7 @@ public class Capture : MonoBehaviour
         cameraFlash.SetActive(false);
     }
 
-    void ShowPhoto(Texture2D screenCapture, bool isKeyItem)
+    void ShowPhoto(Texture2D screenCapture)
     {
         Sprite photoSprite = Sprite.Create(screenCapture, new Rect(0.0f, 0.0f, screenCapture.width, screenCapture.height), new Vector2(.5f, .5f), 100.0f);
 
@@ -124,28 +86,14 @@ public class Capture : MonoBehaviour
         PhotoFrame.SetActive(true);
         fadingAnimation.Play("PhotoFade");
 
-        if (isKeyItem)
-        {
-            SaveKeyItemAsGameObject(photoSprite);
-        }
-        else
-        {
-            SavePhotoAsGameObject(photoSprite);
-        }
+        SavePhotoAsGameObject(photoSprite);
     }
 
     void SavePhotoAsGameObject(Sprite photoSprite)
     {
-        GameObject newPhoto = Instantiate(photoPrefab, normalPhotoContainer); // Instantiate new photo in the normal photo container
+        GameObject newPhoto = Instantiate(photoPrefab, photoContainer); // Instantiate new photo in the photo container
         newPhoto.GetComponent<Image>().sprite = photoSprite;
         // Optionally set position and other properties of the new photo game object here
-    }
-
-    void SaveKeyItemAsGameObject(Sprite photoSprite)
-    {
-        GameObject newPhoto = Instantiate(photoPrefab, keyItemContainer); // Instantiate new key item photo in the key item container
-        newPhoto.GetComponent<Image>().sprite = photoSprite;
-        // Optionally set position and other properties of the new key item game object here
     }
 
     void RemovePhoto()
