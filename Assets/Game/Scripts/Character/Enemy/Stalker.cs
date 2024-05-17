@@ -6,9 +6,11 @@ using UnityEngine.AI;
 [RequireComponent (typeof(StalkerFSM))]
 public class Stalker : EnemyBase, IHear
 {
+    public Transform dest1;
+    public Transform dest2;
 
     StalkerFSM fsm;
-    NavMeshAgent stalkerAgent;
+    public NavMeshAgent stalkerAgent;
 
     public bool bPlayerSensed = false;
     public bool bSoundHeard = false;
