@@ -80,10 +80,9 @@ public class Capture : MonoBehaviour
         isCaptureMode = !isCaptureMode;
         player.SetActive(!isCaptureMode); // Disable player control when in capture mode
 
-        if (captureModeCanvas != null)
-        {
+       
             captureModeCanvas.enabled = isCaptureMode; // Enable or disable the capture mode canvas
-        }
+       
 
     }
 
@@ -96,6 +95,10 @@ public class Capture : MonoBehaviour
     IEnumerator CapturePhoto(bool isKeyItem)
     {
         viewingPhoto = true;
+
+        // Disable the capture mode canvas before taking the screenshot
+        captureModeCanvas.enabled = false;
+
         yield return new WaitForEndOfFrame();
 
         Texture2D screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
@@ -105,6 +108,10 @@ public class Capture : MonoBehaviour
         Rect regionToRead = new Rect(0, 0, Screen.width, Screen.height);
         screenCapture.ReadPixels(regionToRead, 0, 0, false);
         screenCapture.Apply();
+
+        // Re-enable the capture mode canvas after taking the screenshot
+        captureModeCanvas.enabled = true;
+
         ShowPhoto(screenCapture, isKeyItem);
     }
 
